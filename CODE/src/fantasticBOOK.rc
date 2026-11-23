@@ -1,0 +1,429 @@
+// Microsoft Visual C++ generated resource script.
+//
+#pragma code_page(65001)
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#include ""res\\fantasticBOOK.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""l.CHS\\afxribbon.rc""   // MFC 功能区和控制条资源\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\..\\res\\fantasticBOOK3.ico"
+
+IDI_MAINICON_LAST       ICON                    "..\\..\\res\\fantasticBOOK2.ico"
+
+IDC_MAINICON            ICON                    "..\\..\\res\\fantasticBOOK3.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 fantasticBOOK"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "fantasticBOOK，版本 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2026",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_FANTASTICBOOK_DIALOG DIALOGEX 0, 0, 320, 200
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,209,179,50,14
+    PUSHBUTTON      "取消",IDCANCEL,263,179,50,14
+    CTEXT           "TODO: 在此放置对话框控件。",IDC_STATIC,10,96,300,8
+END
+
+IDD_MAINWND DIALOGEX 0, 0, 232, 350
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fantasticBOOK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "日记",IDC_BUTTON_DIARY,191,334,34,9
+    PUSHBUTTON      "TODO",IDC_BUTTON_TODO,129,334,34,9
+    PUSHBUTTON      "备忘录",IDC_BUTTON_MEMO,159,334,34,9
+    PUSHBUTTON      "桌宠",IDC_BUTTON_PET,96,334,34,9
+    CONTROL         "",IDC_PAGE_HOST,"Static",SS_LEFTNOWORDWRAP | SS_CENTERIMAGE | WS_GROUP,7,45,218,284,WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,16,18,200,15
+END
+
+IDD_DIALOG_TODO DIALOGEX 0, 0, 218, 283
+STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "这是TODO清单",IDC_TIP_TODO,73,7,54,15,SS_CENTERIMAGE
+    CONTROL         "",IDC_TODOLIST,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,20,177,227
+    PUSHBUTTON      "新增TODO",IDC_TODO_ADD,7,261,85,15
+    PUSHBUTTON      "删除TODO",IDC_TODODEL,126,261,85,15
+END
+
+IDD_DIALOG_MEMO DIALOGEX 0, 0, 218, 283
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_MEMO_LIST,7,7,204,255,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "清空",IDC_MEMO_CLEAR,105,262,50,14
+    PUSHBUTTON      "新增",IDC_MEMO_ADD,7,262,50,14
+    PUSHBUTTON      "删除",IDC_MEMO_DEL,56,262,50,14
+END
+
+IDD_DIALOG_DIARY DIALOGEX 0, 0, 218, 283
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "这是日记",IDC_TIP_DIARY,82,126,45,15,SS_CENTERIMAGE
+END
+
+IDD_DIALOG_PET DIALOGEX 0, 0, 218, 283
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "这是桌宠界面",IDC_TIP_PET,72,124,45,15,SS_CENTERIMAGE
+END
+
+IDD_TIPADDTODO DIALOGEX 0, 0, 256, 133
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fantasticBOOK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "添加",IDC_ADDTODO_ADD,30,112,50,14
+    PUSHBUTTON      "取消",IDC_ADDTODO_CANCEL,177,112,50,14
+    EDITTEXT        IDC_ADDTODO_EDIT2,47,46,164,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ADDTODO_EDIT1,47,17,164,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ADDTODO_EDIT3,48,76,164,14,ES_AUTOHSCROLL
+    CTEXT           "任务描述:",IDC_TEXT1,14,14,33,16,SS_CENTERIMAGE
+    CTEXT           "创建时间:",IDC_TEXT2,14,44,33,16,SS_CENTERIMAGE
+    CTEXT           "截至时间:",IDC_TEXT3,14,75,32,16,SS_CENTERIMAGE
+END
+
+IDD_TIPDELTODO DIALOGEX 0, 0, 270, 121
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fantasticBOOK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确定",IDC_DELTODO_CONFIRM,42,100,50,14
+    PUSHBUTTON      "取消",IDC_DELTODO_CANCEL,178,100,50,14
+    LTEXT           "确定删去此项TODO吗?(已经完成或者取消该任务)",IDC_DELTODOTEXT1,61,21,161,10
+    CTEXT           "",IDC_DELTODOTEXT2,65,50,142,23,SS_CENTERIMAGE
+END
+
+IDD_MEMOADD_TIP DIALOGEX 0, 0, 243, 93
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fantasticBOOK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_MEMOADD_EDIT,20,33,205,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "确定",IDC_MEMOADD_OK,92,72,50,14
+END
+
+IDD_TIPMEMOCLEAR DIALOGEX 0, 0, 243, 88
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fantasticBOOK"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确定",IDC_BUTTON1,29,67,50,14
+    PUSHBUTTON      "取消",IDC_BUTTON2,161,67,50,14
+    CTEXT           "请再次确认清空备忘录",IDC_STATIC,73,31,88,8,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "TODO: <公司名>"
+            VALUE "FileDescription", "fantasticBOOK"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "fantasticBOOK.exe"
+            VALUE "LegalCopyright", "TODO:  (C) <公司名>。  保留所有权利。"
+            VALUE "OriginalFilename", "fantasticBOOK.exe"
+            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_FANTASTICBOOK_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+
+    IDD_MAINWND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 225
+        VERTGUIDE, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 343
+    END
+
+    IDD_DIALOG_TODO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 276
+    END
+
+    IDD_DIALOG_MEMO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        VERTGUIDE, 64
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 276
+    END
+
+    IDD_DIALOG_DIARY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 276
+    END
+
+    IDD_DIALOG_PET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 276
+    END
+
+    IDD_TIPADDTODO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 126
+    END
+
+    IDD_TIPDELTODO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 263
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_MEMOADD_TIP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_TIPMEMOCLEAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 81
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_MAINWND AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_TODO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_MEMO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_DIARY AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_DIALOG_PET AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TIPADDTODO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TIPDELTODO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_MEMOADD_TIP AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TIPMEMOCLEAR AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "关于 fantasticBOOK(&A)..."
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#include "res\fantasticBOOK.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#if !defined(_AFXDLL)
+#include "l.CHS\afxribbon.rc"   // MFC 功能区和控制条资源
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

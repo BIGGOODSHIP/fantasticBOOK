@@ -1,0 +1,21 @@
+
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.pch
+*.ipch
+*.idb
+*.tlog
+*.lastbuildstate
+# Visual Studio 用户状态
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+
+# 构建产物
+x64/
+Debug/
+Release/
+fantasticBOOK/x64/
