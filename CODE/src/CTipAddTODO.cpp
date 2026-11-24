@@ -5,6 +5,7 @@
 #include "fantasticBOOK.h"
 #include "afxdialogex.h"
 #include "CTipAddTODO.h"
+#include "FlatButtonStyle.h"
 #include <string>
 
 
@@ -25,6 +26,8 @@ CTipAddTODO::~CTipAddTODO()
 BOOL CTipAddTODO::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+	// 控件创建完成后统一应用浅灰色按钮样式。
+	ApplyFlatButtonStyle(*this);
 	// 设置当前日期为添加日期
 	COLORREF captionColor = RGB(40, 80, 120);
 	HRESULT hr = DwmSetWindowAttribute(

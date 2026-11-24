@@ -6,9 +6,16 @@
 #include "CDlgTODO.h"
 #include "CTipAddTODO.h"
 #include "CCheckListCtrl.h"
-#include "TODOListItem.h"
+#include "Data.h"
 #include "CTipDelTODO.h"
+#include "utility.h"
 #include <algorithm>
+
+namespace {
+	CString Utf8ToCString(const std::string& text) {
+		return CString(CA2T(text.c_str(), CP_UTF8));
+	}
+}
 
 
 // CDlgTODO 对话框
@@ -41,6 +48,21 @@ BOOL CDlgTODO::OnInitDialog() {
 
 
 	m_listTodoCTL.setpList(m_todoList);
+	Load(m_todoList, "TODO.txt");
+	for (const auto& item : m_todoList) {
+		int index = static_cast<int>(m_listTodoCTL.GetItemCount());
+		m_listTodoCTL.InsertItem(
+			index,
+			Utf8ToCString(item.description));
+		m_listTodoCTL.SetItemText(
+			index,
+			1,
+			Utf8ToCString(item.adddate).Right(8));
+		m_listTodoCTL.SetItemText(
+			index,
+			2,
+			Utf8ToCString(item.duedate));
+	}
 	return TRUE;
 }
 void CDlgTODO::DoDataExchange(CDataExchange* pDX)

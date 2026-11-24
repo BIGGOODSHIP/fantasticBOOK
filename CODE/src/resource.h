@@ -20,6 +20,7 @@
 #define IDI_ICON1                       153
 #define IDI_MAINICON                    153
 #define IDI_ICON2                       154
+#define IDD_TIPDIARYADD                 155
 #define IDC_MFCEDITBROWSE1              1001
 #define IDC_MFCCOLORBUTTON1             1002
 #define IDC_TIME                        1002
@@ -56,14 +57,24 @@
 #define IDC_MEMOADD_OK                  1048
 #define IDC_BUTTON1                     1049
 #define IDC_BUTTON2                     1050
+#define IDC_DIARYCONTENT                1051
+#define IDC_DIARYINDEX                  1052
+#define IDC_DIARYADD                    1053
+#define IDC_DIARYDEL                    1054
+#define IDC_TIPDIARYADD_CONFIRM         1055
+#define IDC_TIPDIARYADD_CANCEL          1056
+#define IDC_DIARYADD_EDIT1              1057
+#define IDC_DIARYADD_TEXT2              1058
+#define IDC_DIARYADD_EDIT2              1058
+#define IDC_EDIT1                       1059
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1051
+#define _APS_NEXT_CONTROL_VALUE         1060
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

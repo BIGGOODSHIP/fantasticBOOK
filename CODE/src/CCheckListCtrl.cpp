@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "CCheckListCtrl.h"
 #include<list>
-#include"TODOListItem.h"
+#include"Data.h"
 
 //定时器编号和时间
 static const UINT_PTR HOVER_TIMER_ID = 1;
@@ -9,6 +9,7 @@ static const UINT HOVER_DELAY_MS = 600;
 
 BEGIN_MESSAGE_MAP(CCheckListCtrl, CListCtrl)
     ON_WM_MOUSEMOVE()
+    ON_WM_LBUTTONDBLCLK()
     ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -95,6 +96,12 @@ void CCheckListCtrl::OnMouseMove(UINT nFlags, CPoint point)
     }
 }
 
+void CCheckListCtrl::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+    m_index = HitTest(point);
+    CListCtrl::OnLButtonDblClk(nFlags, point);
+}
+
 void CCheckListCtrl::OnTimer(UINT_PTR nIDEvent)
 {
     if (nIDEvent != HOVER_TIMER_ID)
@@ -129,19 +136,28 @@ void CCheckListCtrl::OnTimer(UINT_PTR nIDEvent)
 
 //显示itemtip的函数封装
 void CCheckListCtrl::ShowItemTip(int item_index, CPoint screenpoint) {
-    CString description = GetItemText(item_index, 0);
-    auto it = m_plist->begin();
-    for (int i = 0;i < item_index;++i) {
-        ++it;
+    if (m_tipTextProvider) {
+        m_tipText = m_tipTextProvider(item_index);
     }
-    CString addDate = CString((*it).adddate.c_str());
-    CString dueDate = GetItemText(item_index, 2);
+    else {
+        if (m_plist == nullptr) {
+            return;
+        }
 
-    m_tipText.Format(
-        _T("任务描述: %s    创建时间：%s    最晚完成时间：%s"),
-        description.GetString(),
-        addDate.GetString(),
-        dueDate.GetString());
+        CString description = GetItemText(item_index, 0);
+        auto it = m_plist->begin();
+        for (int i = 0;i < item_index;++i) {
+            ++it;
+        }
+        CString addDate = CString((*it).adddate.c_str());
+        CString dueDate = GetItemText(item_index, 2);
+
+        m_tipText.Format(
+            _T("任务描述: %s    创建时间：%s    最晚完成时间：%s"),
+            description.GetString(),
+            addDate.GetString(),
+            dueDate.GetString());
+    }
     m_tipTool.lpszText =
         const_cast<LPTSTR>(
             static_cast<LPCTSTR>(m_tipText));

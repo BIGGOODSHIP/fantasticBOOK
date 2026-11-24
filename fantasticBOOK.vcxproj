@@ -211,17 +211,19 @@
     <ClInclude Include="CODE\src\CDlgPet.h" />
     <ClInclude Include="CODE\src\CDlgTODO.h" />
     <ClInclude Include="CODE\src\CMainWnd.h" />
+    <ClInclude Include="CODE\src\CTipAddDiary.h" />
     <ClInclude Include="CODE\src\CTipAddTODO.h" />
     <ClInclude Include="CODE\src\CTipDelTODO.h" />
     <ClInclude Include="CODE\src\CTipMemoAdd.h" />
     <ClInclude Include="CODE\src\CTipMemoClear.h" />
     <ClInclude Include="CODE\src\fantasticBOOK.h" />
     <ClInclude Include="CODE\src\fantasticBOOKDlg.h" />
+    <ClInclude Include="CODE\src\FlatButtonStyle.h" />
     <ClInclude Include="CODE\src\framework.h" />
     <ClInclude Include="CODE\src\pch.h" />
     <ClInclude Include="CODE\src\resource.h" />
     <ClInclude Include="CODE\src\targetver.h" />
-    <ClInclude Include="CODE\src\TODOListItem.h" />
+    <ClInclude Include="CODE\src\Data.h" />
     <ClInclude Include="CODE\src\Writer.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
@@ -232,12 +234,14 @@
     <ClCompile Include="CODE\src\CDlgPet.cpp" />
     <ClCompile Include="CODE\src\CDlgTODO.cpp" />
     <ClCompile Include="CODE\src\CMainWnd.cpp" />
+    <ClCompile Include="CODE\src\CTipAddDiary.cpp" />
     <ClCompile Include="CODE\src\CTipAddTODO.cpp" />
     <ClCompile Include="CODE\src\CTipDelTODO.cpp" />
     <ClCompile Include="CODE\src\CTipMemoAdd.cpp" />
     <ClCompile Include="CODE\src\CTipMemoClear.cpp" />
     <ClCompile Include="CODE\src\fantasticBOOK.cpp" />
     <ClCompile Include="CODE\src\fantasticBOOKDlg.cpp" />
+    <ClCompile Include="CODE\src\FlatButtonStyle.cpp" />
     <ClCompile Include="CODE\src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -8,3 +8,10 @@ struct TODOListItem {
 	BOOL completed;          // 是否完成
 
 };
+
+struct Diary {
+	std::string index;		//日记标题
+	std::string content;	//日记内容
+};
+
+

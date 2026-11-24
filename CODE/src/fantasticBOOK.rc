@@ -54,10 +54,10 @@ BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
     "LANGUAGE 4, 2\r\n"
-    "#include ""res\\fantasticBOOK.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
-    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#include ""res\\fantasticBOOK.rc2""  // 闈?Microsoft Visual C++ 缂栬緫鐨勮祫婧?\n"
+    "#include ""l.CHS\\afxres.rc""      // 鏍囧噯缁勪欢\r\n"
     "#if !defined(_AFXDLL)\r\n"
-    "#include ""l.CHS\\afxribbon.rc""   // MFC 功能区和控制条资源\r\n"
+    "#include ""l.CHS\\afxribbon.rc""   // MFC 鍔熻兘鍖哄拰鎺у埗鏉¤祫婧?\n"
     "#endif\r\n"
     "#endif\r\n"
     "\0"
@@ -143,7 +143,10 @@ IDD_DIALOG_DIARY DIALOGEX 0, 0, 218, 283
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CTEXT           "这是日记",IDC_TIP_DIARY,82,126,45,15,SS_CENTERIMAGE
+    CONTROL         "",IDC_DIARYINDEX,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,48,258
+    PUSHBUTTON      "+",IDC_DIARYADD,7,265,25,11
+    PUSHBUTTON      "-",IDC_DIARYDEL,30,265,25,11
+    EDITTEXT        IDC_DIARYCONTENT,55,7,156,269,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
 END
 
 IDD_DIALOG_PET DIALOGEX 0, 0, 218, 283
@@ -196,6 +199,19 @@ BEGIN
     PUSHBUTTON      "确定",IDC_BUTTON1,29,67,50,14
     PUSHBUTTON      "取消",IDC_BUTTON2,161,67,50,14
     CTEXT           "请再次确认清空备忘录",IDC_STATIC,73,31,88,8,SS_CENTERIMAGE
+END
+
+IDD_TIPDIARYADD DIALOGEX 0, 0, 256, 109
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确定",IDC_TIPDIARYADD_CONFIRM,40,88,50,14
+    PUSHBUTTON      "取消",IDC_TIPDIARYADD_CANCEL,168,88,50,14
+    EDITTEXT        IDC_DIARYADD_EDIT1,55,17,151,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DIARYADD_EDIT2,55,47,151,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "日记标题:",IDC_STATIC,21,18,32,8
+    LTEXT           "日记日期:",IDC_STATIC,21,49,32,8
 END
 
 
@@ -335,6 +351,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 81
     END
+
+    IDD_TIPDIARYADD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 102
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -385,6 +409,11 @@ BEGIN
 END
 
 IDD_TIPMEMOCLEAR AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_TIPDIARYADD AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

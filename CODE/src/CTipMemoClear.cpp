@@ -5,6 +5,7 @@
 #include "fantasticBOOK.h"
 #include "afxdialogex.h"
 #include "CTipMemoClear.h"
+#include "FlatButtonStyle.h"
 
 
 // CTipMemoClear 对话框
@@ -22,6 +23,8 @@ CTipMemoClear::~CTipMemoClear()
 	
 }
 BOOL CTipMemoClear::OnInitDialog() {
+	// 控件创建完成后统一应用浅灰色按钮样式。
+	ApplyFlatButtonStyle(*this);
 	COLORREF captionColor = RGB(40, 80, 120);
 	HRESULT hr = DwmSetWindowAttribute(
 		GetSafeHwnd(),

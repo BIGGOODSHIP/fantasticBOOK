@@ -7,6 +7,7 @@
 #include "fantasticBOOK.h"
 #include "fantasticBOOKDlg.h"
 #include "afxdialogex.h"
+#include "FlatButtonStyle.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,6 +28,7 @@ public:
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+	virtual BOOL OnInitDialog();
 
 // 实现
 protected:
@@ -40,6 +42,14 @@ CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+}
+
+BOOL CAboutDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+	// “关于”对话框的确定按钮也使用统一按钮外观。
+	ApplyFlatButtonStyle(*this);
+	return TRUE;
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
@@ -98,6 +108,8 @@ BOOL CfantasticBOOKDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
+	// 处理本对话框中的确定和取消按钮。
+	ApplyFlatButtonStyle(*this);
 
 	// TODO: 在此添加额外的初始化代码
 

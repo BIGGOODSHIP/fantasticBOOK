@@ -5,6 +5,7 @@
 #include "fantasticBOOK.h"
 #include "afxdialogex.h"
 #include "CMainWnd.h"
+#include "FlatButtonStyle.h"
 #include"utility.h"
 
 #pragma comment(lib, "dwmapi.lib")
@@ -46,6 +47,8 @@ BOOL CMainWnd::OnInitDialog()
 	//
 	m_pCurrentDlg = &m_dlgMemo; // 默认显示备忘录对话框
 	ShowCurrentPage();
+	// 子页已创建，可一次覆盖主窗口和所有子页中的按钮。
+	ApplyFlatButtonStyle(*this);
 
 	
 

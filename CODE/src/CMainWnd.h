@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "afxdialogex.h"
+#include"flatButtonStyle.h"
 #include "CDlgMemo.h"
 #include "CDlgDiary.h"
 #include "CDlgTODO.h"

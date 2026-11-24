@@ -7,6 +7,13 @@
 #include "CDlgMemo.h"
 #include "CTipMemoAdd.h"
 #include "CTipMemoClear.h"
+#include "utility.h"
+
+namespace {
+	CString Utf8ToCString(const std::string& text) {
+		return CString(CA2T(text.c_str(), CP_UTF8));
+	}
+}
 
 
 // CDlgMemo 对话框
@@ -21,6 +28,17 @@ CDlgMemo::CDlgMemo(CWnd* pParent /*=nullptr*/)
 
 CDlgMemo::~CDlgMemo()
 {
+}
+
+BOOL CDlgMemo::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	Load(m_memoVec, "memo.txt");
+	for (const auto& memo : m_memoVec) {
+		m_memolist.AddString(Utf8ToCString(memo));
+	}
+	return TRUE;
 }
 
 void CDlgMemo::DoDataExchange(CDataExchange* pDX)

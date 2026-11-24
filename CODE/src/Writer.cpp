@@ -31,3 +31,12 @@ int Writer::writetofile(std::string path,std::string text) {
 	ofs << text << "\n";
 	return 1;
 }
+
+bool Writer::open_for_write() {
+	if (!ofs.is_open()) {
+		ofs.open(path);
+		if (!ofs.is_open()) {
+			return -1;
+		}
+	}
+}

@@ -5,6 +5,7 @@
 #include "fantasticBOOK.h"
 #include "afxdialogex.h"
 #include "CTipDelTODO.h"
+#include "FlatButtonStyle.h"
 
 
 // CTipDelTODO 对话框
@@ -22,6 +23,8 @@ CTipDelTODO::~CTipDelTODO()
 }
 BOOL CTipDelTODO::OnInitDialog() {
 	CDialogEx::OnInitDialog();
+	// 控件创建完成后统一应用浅灰色按钮样式。
+	ApplyFlatButtonStyle(*this);
 
 	COLORREF captionColor = RGB(40, 80, 120);
 	HRESULT hr = DwmSetWindowAttribute(

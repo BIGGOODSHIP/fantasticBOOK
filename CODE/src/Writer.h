@@ -26,6 +26,7 @@ public:
 	int writetofile(std::string path, std::string text);
 
 	void setpath(const std::string& path);
+	bool open_for_write();
 
 private:
 	static Writer _Instance;

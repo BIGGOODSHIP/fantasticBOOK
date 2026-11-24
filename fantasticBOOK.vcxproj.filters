@@ -66,10 +66,16 @@
     <ClInclude Include="CODE\src\targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CODE\src\TODOListItem.h">
+    <ClInclude Include="CODE\src\Data.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CODE\src\Writer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CODE\src\CTipAddDiary.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CODE\src\FlatButtonStyle.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -118,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="CODE\src\utility.h">
       <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CODE\src\CTipAddDiary.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CODE\src\FlatButtonStyle.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
