@@ -12,6 +12,7 @@
 #define IDD_DIALOG_MEMO                 134
 #define IDD_DIALOG_DIARY                136
 #define IDD_DIALOG_PET                  138
+#define IDD_DIALOG_MAIN                 138
 #define IDD_TIPADDTODO                  140
 #define IDD_TIPDELTODO                  142
 #define IDD_MEMOADD_TIP                 146
@@ -71,7 +72,6 @@
 #define IDC_ADDDIARY_CLEAR              1060
 #define IDC_ADDDIARY_SAVE               1061
 #define IDC_LIST3                       1084
-#define IDC_TIPDIARYDEL                 1085
 #define IDC_DIARYDEL_TIP                1085
 #define IDC_DIRAYDEL_CONFIRM            1086
 #define IDC_DIARYDEL_CANCEL             1087

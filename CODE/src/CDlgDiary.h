@@ -51,6 +51,8 @@ private:
 	std::vector<Diary> m_diarys;
 	std::vector<std::string> m_diaryDates;
 	bool m_loadFailed = false;
+
+	CFont m_uiFont;
 public:
 	CEdit m_DiaryContent;
 	afx_msg void OnBnClickedAdddiarySave();

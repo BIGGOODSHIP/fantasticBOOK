@@ -358,3 +358,81 @@ inline bool LoadDiarys(
     }
     return true;
 }
+//设置字体
+
+namespace UiFont
+{
+    inline BOOL ApplyFontToChildren(
+        CWnd& parent,
+        CFont& persistentFont,
+        int pointSize = 12,
+        LONG weight = FW_BOLD,
+        bool italic = false,
+        bool underline = false,
+        bool strikeOut = false,
+        LPCTSTR faceName = _T("Microsoft YaHei"))
+    {
+        HWND hParent = parent.GetSafeHwnd();
+
+        if (!::IsWindow(hParent) ||
+            pointSize <= 0 ||
+            faceName == nullptr ||
+            faceName[0] == 0)
+        {
+            return FALSE;
+        }
+
+        CClientDC dc(&parent);
+        const int dpi = dc.GetDeviceCaps(LOGPIXELSY);
+
+        if (dpi <= 0)
+            return FALSE;
+
+        LOGFONT lf{};
+        lf.lfHeight = -MulDiv(pointSize, dpi, 72);
+        lf.lfWeight = weight;
+        lf.lfItalic = italic ? TRUE : FALSE;
+        lf.lfUnderline = underline ? TRUE : FALSE;
+        lf.lfStrikeOut = strikeOut ? TRUE : FALSE;
+        lf.lfCharSet = DEFAULT_CHARSET;
+        lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
+        lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
+        lf.lfQuality = CLEARTYPE_QUALITY;
+        lf.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
+        _tcsncpy_s(lf.lfFaceName, LF_FACESIZE, faceName, _TRUNCATE);
+
+        // 先创建新字体，创建成功后再应用到控件。
+        CFont newFont;
+        if (!newFont.CreateFontIndirect(&lf))
+            return FALSE;
+
+        const HFONT hFont =
+            static_cast<HFONT>(newFont.GetSafeHandle());
+
+        ::EnumChildWindows(
+            hParent,
+            [](HWND child, LPARAM data) -> BOOL
+            {
+                const HFONT childFont =
+                    reinterpret_cast<HFONT>(data);
+
+                ::SendMessage(
+                    child,
+                    WM_SETFONT,
+                    reinterpret_cast<WPARAM>(childFont),
+                    MAKELPARAM(TRUE, 0));
+
+                return TRUE;
+            },
+            reinterpret_cast<LPARAM>(hFont));
+
+        // 所有控件已经引用新字体，此时才能释放旧字体。
+        if (persistentFont.GetSafeHandle() != nullptr)
+            persistentFont.DeleteObject();
+
+        // 把新字体所有权交给调用方的成员变量。
+        persistentFont.Attach(newFont.Detach());
+
+        return TRUE;
+    }
+}

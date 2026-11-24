@@ -29,6 +29,19 @@ BOOL CMainWnd::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	ApplyApplicationIcons(*this);
+	//设置字体
+	if (!UiFont::ApplyFontToChildren(
+		*this,
+		m_uiFont,
+		9,             // 12 磅
+		FW_BOLD,        // 粗体
+		false,          // 斜体
+		false,          // 下划线
+		false,          // 删除线
+		_T("Microsoft YaHei")))
+	{
+		TRACE(_T("创建或设置字体失败\n"));
+	}
 
 
 	COLORREF captionColor = RGB(40, 80, 120);
@@ -45,7 +58,7 @@ BOOL CMainWnd::OnInitDialog()
 	m_dlgTODO.Create(IDD_DIALOG_TODO, this);
 	m_dlgPet.Create(IDD_DIALOG_PET, this);
 	//
-	m_pCurrentDlg = &m_dlgMemo; // 默认显示备忘录对话框
+	m_pCurrentDlg = &m_dlgPet; // 默认显示欢迎界面
 	ShowCurrentPage();
 	// 子页已创建，可一次覆盖主窗口和所有子页中的按钮。
 	ApplyFlatButtonStyle(*this);

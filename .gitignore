@@ -11,9 +11,13 @@
 # Visual Studio 用户状态
 .vs/
 *.vcxproj.user
+*.vcxproj.filters
 *.suo
 *.user
+*.gitignore
 
+*.slnx
+*.vcxproj
 # 构建产物
 x64/
 Debug/

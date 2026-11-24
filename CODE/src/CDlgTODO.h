@@ -40,6 +40,8 @@ private:
 	std::list<TODOListItem> m_todoList; // 待办事项列表数据结构
 	bool m_loadFailed = false;
 
+	CFont m_uiFont;
+
 	
 public:
 	afx_msg void OnBnClickedTodoAdd();

@@ -114,7 +114,7 @@ BEGIN
     PUSHBUTTON      "日记",IDC_BUTTON_DIARY,191,334,34,9
     PUSHBUTTON      "TODO",IDC_BUTTON_TODO,129,334,34,9
     PUSHBUTTON      "备忘录",IDC_BUTTON_MEMO,159,334,34,9
-    PUSHBUTTON      "桌宠",IDC_BUTTON_PET,96,334,34,9
+    PUSHBUTTON      "--",IDC_BUTTON_PET,96,334,34,9
     CONTROL         "",IDC_PAGE_HOST,"Static",SS_LEFTNOWORDWRAP | SS_CENTERIMAGE | WS_GROUP,7,45,218,284,WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE
     CONTROL         "",IDC_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,16,18,200,15
 END
@@ -123,7 +123,7 @@ IDD_DIALOG_TODO DIALOGEX 0, 0, 218, 283
 STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CTEXT           "这是TODO清单",IDC_TIP_TODO,73,7,54,15,SS_CENTERIMAGE
+    CTEXT           "这是TODO清单",IDC_TIP_TODO,54,7,85,15,SS_CENTERIMAGE
     CONTROL         "",IDC_TODOLIST,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,20,177,227
     PUSHBUTTON      "新增TODO",IDC_TODO_ADD,7,261,85,15
     PUSHBUTTON      "删除TODO",IDC_TODODEL,126,261,85,15
@@ -151,11 +151,11 @@ BEGIN
     CONTROL         "",IDC_DIARYINDEX,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,48,258
 END
 
-IDD_DIALOG_PET DIALOGEX 0, 0, 218, 283
+IDD_DIALOG_MAIN DIALOGEX 0, 0, 218, 283
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_BORDER | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CTEXT           "这是桌宠界面",IDC_TIP_PET,72,124,45,15,SS_CENTERIMAGE
+    CTEXT           "欢迎",IDC_TIP_PET,71,128,61,15,SS_CENTERIMAGE
 END
 
 IDD_TIPADDTODO DIALOGEX 0, 0, 256, 133
@@ -324,7 +324,7 @@ BEGIN
         BOTTOMMARGIN, 276
     END
 
-    IDD_DIALOG_PET, DIALOG
+    IDD_DIALOG_MAIN, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 211
@@ -408,7 +408,7 @@ BEGIN
     0
 END
 
-IDD_DIALOG_PET AFX_DIALOG_LAYOUT
+IDD_DIALOG_MAIN AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -471,10 +471,10 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE 4, 2
-#include "res\fantasticBOOK.rc2"  // 闂?Microsoft Visual C++ 缂傚倹鐗炵欢顐︽儍閸曨喚銈繝?
-#include "l.CHS\afxres.rc"      // 闁哄秴娲ら崳顖滅磼閸曨亝顐?
+#include "res\fantasticBOOK.rc2"  // 闂?Microsoft Visual C++ 缂傚倸鍊归悧鐐垫椤愶附鍎嶉柛鏇ㄥ枤閵堫偅绻?
+#include "l.CHS\afxres.rc"      // 闂佸搫绉村ú銈夊闯椤栨粎纾奸柛鏇ㄤ簼椤?
 #if !defined(_AFXDLL)
-#include "l.CHS\afxribbon.rc"   // MFC 闁告梻鍠曢崗姗€宕犻崫鍕闁硅矇鍐ㄧ厬闁哄銈囥偒婵?
+#include "l.CHS\afxribbon.rc"   // MFC 闂佸憡姊婚崰鏇㈠礂濮椻偓瀹曠娀宕崟顒€顏梺纭呯焽閸愩劎鍘梺鍝勵棥閵堝洢鍋掑┑?
 #endif
 #endif
 
