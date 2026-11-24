@@ -214,6 +214,7 @@
     <ClInclude Include="CODE\src\CTipAddDiary.h" />
     <ClInclude Include="CODE\src\CTipAddTODO.h" />
     <ClInclude Include="CODE\src\CTipDelTODO.h" />
+    <ClInclude Include="CODE\src\CTipDiaryDel.h" />
     <ClInclude Include="CODE\src\CTipMemoAdd.h" />
     <ClInclude Include="CODE\src\CTipMemoClear.h" />
     <ClInclude Include="CODE\src\fantasticBOOK.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="CODE\src\CTipAddDiary.cpp" />
     <ClCompile Include="CODE\src\CTipAddTODO.cpp" />
     <ClCompile Include="CODE\src\CTipDelTODO.cpp" />
+    <ClCompile Include="CODE\src\CTipDiaryDel.cpp" />
     <ClCompile Include="CODE\src\CTipMemoAdd.cpp" />
     <ClCompile Include="CODE\src\CTipMemoClear.cpp" />
     <ClCompile Include="CODE\src\fantasticBOOK.cpp" />

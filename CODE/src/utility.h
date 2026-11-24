@@ -41,21 +41,39 @@ inline void ApplyApplicationIcons(CWnd& window)
     }
 }
 
+inline bool FileExists(const std::string& path)
+{
+    const DWORD attributes = GetFileAttributesA(path.c_str());
+    if (attributes != INVALID_FILE_ATTRIBUTES)
+    {
+        return true;
+    }
+
+    const DWORD error = GetLastError();
+    return error != ERROR_FILE_NOT_FOUND
+        && error != ERROR_PATH_NOT_FOUND;
+}
+
+inline std::string EscapeField(const std::string& content);
+inline std::string UnescapeField(const std::string& content);
+
 inline std::string ToLine(const std::string& text)
 {
-    return text;
+    return "@m1:" + EscapeField(text);
 }
 
 inline std::string ToLine(const TODOListItem& node)
 {
     std::ostringstream line;
-    line << node.description<< '\t'
-        << node.adddate << '\t'
-        << node.duedate;
+    line << "@t2:"
+        << EscapeField(node.description) << '\t'
+        << EscapeField(node.adddate) << '\t'
+        << EscapeField(node.duedate) << '\t'
+        << (node.completed ? 1 : 0);
     return line.str();
 }
 
-inline std::string EscapeDiaryContent(const std::string& content)
+inline std::string EscapeField(const std::string& content)
 {
     std::string escaped;
     escaped.reserve(content.size());
@@ -83,7 +101,7 @@ inline std::string EscapeDiaryContent(const std::string& content)
     return escaped;
 }
 
-inline std::string UnescapeDiaryContent(const std::string& content)
+inline std::string UnescapeField(const std::string& content)
 {
     std::string unescaped;
     unescaped.reserve(content.size());
@@ -124,37 +142,47 @@ inline std::string ToLine(const Diary& node, const std::string& adddate)
     std::ostringstream line;
     line << node.index << '\t'
         << adddate << '\t'
-        << "@e1:" << EscapeDiaryContent(node.content);
+        << "@e1:" << EscapeField(node.content);
     return line.str();
 }
 
 template<class Collection, class WriterType>
-void Save(const Collection& collection, WriterType& writer)
+bool Save(const Collection& collection, WriterType& writer)
 {
-    int ret=writer.open_for_write();
-    if (ret == -1) {
-        std::cout << "open for write failur\n";
-        return;
+    if (!writer.open_for_write()) {
+        return false;
     }
+
     for (const auto& item : collection)
     {
-        writer.writetofile(ToLine(item));
+        if (!writer.writetofile(ToLine(item))) {
+            return false;
+        }
     }
+    return writer.commit();
 }
 
 template<class WriterType>
-void SaveDiarys(
+bool SaveDiarys(
     const std::vector<Diary>& diaries,
     const std::vector<std::string>& adddates,
     WriterType& writer)
 {
-    const size_t count = diaries.size() < adddates.size()
-        ? diaries.size()
-        : adddates.size();
-    for (size_t i = 0; i < count; ++i)
-    {
-        writer.writetofile(ToLine(diaries[i], adddates[i]));
+    if (diaries.size() != adddates.size()) {
+        return false;
     }
+
+    if (!writer.open_for_write()) {
+        return false;
+    }
+
+    for (size_t i = 0; i < diaries.size(); ++i)
+    {
+        if (!writer.writetofile(ToLine(diaries[i], adddates[i]))) {
+            return false;
+        }
+    }
+    return writer.commit();
 }
 
 inline bool FromLine(const std::string& text, std::string& memo)
@@ -164,29 +192,65 @@ inline bool FromLine(const std::string& text, std::string& memo)
         return false;
     }
 
-    memo = text;
+    const std::string prefix = "@m1:";
+    if (text.compare(0, prefix.size(), prefix) == 0)
+    {
+        memo = UnescapeField(text.substr(prefix.size()));
+    }
+    else
+    {
+        memo = text;
+    }
     return true;
 }
 
 inline bool FromLine(const std::string& line, TODOListItem& node)
 {
-    const size_t firstTab = line.find('\t');
+    const std::string prefix = "@t2:";
+    const bool versioned =
+        line.compare(0, prefix.size(), prefix) == 0;
+    const std::string content =
+        versioned ? line.substr(prefix.size()) : line;
+
+    const size_t firstTab = content.find('\t');
     if (firstTab == std::string::npos)
     {
         return false;
     }
 
-    const size_t secondTab = line.find('\t', firstTab + 1);
+    const size_t secondTab = content.find('\t', firstTab + 1);
     if (secondTab == std::string::npos)
     {
         return false;
     }
 
-    node.description = line.substr(0, firstTab);
-    node.adddate = line.substr(firstTab + 1, secondTab - firstTab - 1);
-    node.duedate = line.substr(secondTab + 1);
-    node.completed = FALSE;
-    return !node.description.empty();
+    if (versioned)
+    {
+        const size_t thirdTab = content.find('\t', secondTab + 1);
+        if (thirdTab == std::string::npos)
+        {
+            return false;
+        }
+
+        node.description = UnescapeField(
+            content.substr(0, firstTab));
+        node.adddate = UnescapeField(
+            content.substr(firstTab + 1, secondTab - firstTab - 1));
+        node.duedate = UnescapeField(
+            content.substr(secondTab + 1, thirdTab - secondTab - 1));
+        node.completed =
+            content.substr(thirdTab + 1) == "1" ? TRUE : FALSE;
+    }
+    else
+    {
+        node.description = content.substr(0, firstTab);
+        node.adddate = content.substr(
+            firstTab + 1,
+            secondTab - firstTab - 1);
+        node.duedate = content.substr(secondTab + 1);
+        node.completed = FALSE;
+    }
+    return true;
 }
 
 inline bool FromLine(
@@ -216,7 +280,7 @@ inline bool FromLine(
         const std::string prefix = "@e1:";
         if (content.compare(0, prefix.size(), prefix) == 0)
         {
-            node.content = UnescapeDiaryContent(
+            node.content = UnescapeField(
                 content.substr(prefix.size()));
         }
         else
@@ -224,7 +288,7 @@ inline bool FromLine(
             node.content = content;
         }
     }
-    return !node.index.empty();
+    return true;
 }
 
 
@@ -243,11 +307,18 @@ bool Load(Collection& collection, const std::string& path)
     std::string line;
     while (std::getline(input, line))
     {
-        ValueType item{};
-        if (FromLine(line, item))
+        if (line.empty())
         {
-            collection.push_back(std::move(item));
+            continue;
         }
+
+        ValueType item{};
+        if (!FromLine(line, item))
+        {
+            collection.clear();
+            return false;
+        }
+        collection.push_back(std::move(item));
     }
     return true;
 }
@@ -269,13 +340,21 @@ inline bool LoadDiarys(
     std::string line;
     while (std::getline(input, line))
     {
+        if (line.empty())
+        {
+            continue;
+        }
+
         Diary diary;
         std::string adddate;
-        if (FromLine(line, diary, adddate))
+        if (!FromLine(line, diary, adddate))
         {
-            diaries.push_back(std::move(diary));
-            adddates.push_back(std::move(adddate));
+            diaries.clear();
+            adddates.clear();
+            return false;
         }
+        diaries.push_back(std::move(diary));
+        adddates.push_back(std::move(adddate));
     }
     return true;
 }

@@ -48,7 +48,8 @@ BOOL CDlgTODO::OnInitDialog() {
 
 
 	m_listTodoCTL.setpList(m_todoList);
-	Load(m_todoList, "TODO.txt");
+	const bool fileExists = FileExists("TODO.txt");
+	m_loadFailed = fileExists && !Load(m_todoList, "TODO.txt");
 	for (const auto& item : m_todoList) {
 		int index = static_cast<int>(m_listTodoCTL.GetItemCount());
 		m_listTodoCTL.InsertItem(
@@ -83,7 +84,7 @@ END_MESSAGE_MAP()
 void CDlgTODO::OnBnClickedTodoAdd()
 {
 	CTipAddTODO addDlg;
-	int ret = addDlg.DoModal();
+	INT_PTR ret = addDlg.DoModal();
 	if (ret == IDOK&& addDlg.ifcancel == FALSE) {
 		 //获取用户输入的待办事项信息
 		TODOListItem newItem;
@@ -110,7 +111,8 @@ void CDlgTODO::OnBnClickedTodoAdd()
 void CDlgTODO::add(TODOListItem& item) {
 
 	//将新任务添加到列表中
-	int index = m_listTodoCTL.GetItemCount();
+		int index = static_cast<int>(
+			m_listTodoCTL.GetItemCount());
 	int ret = m_listTodoCTL.InsertItem(index, CString(item.description.c_str())); 
 	m_listTodoCTL.SetItemText(index,1, CString(item.adddate.c_str()).Right(8));
 	m_listTodoCTL.SetItemText(index,2,CString(item.duedate.c_str()));
@@ -136,7 +138,8 @@ void CDlgTODO::del(int item_index) {
 void CDlgTODO::OnBnClickedTododel()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	int index = m_listTodoCTL.GetNextItem(-1, LVNI_SELECTED);
+	int index = static_cast<int>(
+		m_listTodoCTL.GetNextItem(-1, LVNI_SELECTED));
 	if (index == -1) {
 		return;
 	}
@@ -149,7 +152,7 @@ void CDlgTODO::OnBnClickedTododel()
 		TODOListItem temp = *it;
 		CString tiptext = CString(temp.description.c_str());
 		delDlg.tipText = tiptext;
-		int ret=delDlg.DoModal();
+		INT_PTR ret=delDlg.DoModal();
 		if (ret == IDOK && delDlg.ifcancel == FALSE) {
 			//确认删除的操作
 			del(index);

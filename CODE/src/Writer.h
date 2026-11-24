@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include<iostream>
 #include<fstream>
+#include<string>
 //对外输出工具类
 //往外写内容到指定文件
 class Writer
@@ -9,7 +10,7 @@ private:
 	Writer() {};
 public:
 
-	~Writer() {};
+	~Writer();
 
 	Writer(const Writer& other) = delete;
 	Writer(Writer&& other) = delete;
@@ -22,15 +23,19 @@ public:
 		return m_instance;
 	};
 
-	int writetofile(std::string text);
-	int writetofile(std::string path, std::string text);
+	bool writetofile(const std::string& text);
+	bool writetofile(const std::string& path, const std::string& text);
 
 	void setpath(const std::string& path);
 	bool open_for_write();
+	bool commit();
 
 private:
-	static Writer _Instance;
+	void discard_pending_write();
+
 	std::ofstream ofs{};
-	std::string path="";
+	std::string path{};
+	std::string tempPath{};
+	bool transactionOpen = false;
 };
 

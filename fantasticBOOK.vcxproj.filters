@@ -78,6 +78,9 @@
     <ClInclude Include="CODE\src\FlatButtonStyle.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CODE\src\CTipDiaryDel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CODE\src\CCheckListCtrl.cpp">
@@ -129,6 +132,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CODE\src\FlatButtonStyle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CODE\src\CTipDiaryDel.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

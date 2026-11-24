@@ -30,7 +30,9 @@ public:
 	afx_msg void OnBnClickedMemoClear();
 
 	std::vector<std::string>& GetVec();
+	bool HasLoadError() const { return m_loadFailed; }
 private:
 	std::vector<std::string>	m_memoVec;	//存储备忘条目的数据结构
 	CListBox m_memolist;					//list控件
+	bool m_loadFailed = false;
 };

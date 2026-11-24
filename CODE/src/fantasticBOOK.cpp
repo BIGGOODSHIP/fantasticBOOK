@@ -14,6 +14,33 @@
 #define new DEBUG_NEW
 #endif
 
+namespace {
+	bool SaveAllData(CMainWnd& dlg) {
+		CDlgMemo* memoDlg = dlg.GetDlgMemo();
+		CDlgTODO* todoDlg = dlg.GetDlgTODO();
+		CDlgDiary* diaryDlg = dlg.GetDlgDiary();
+
+		if (memoDlg->HasLoadError()
+			|| todoDlg->HasLoadError()
+			|| diaryDlg->HasLoadError()) {
+			return false;
+		}
+
+		Writer& writer = Writer::GetInstance();
+		writer.setpath("memo.txt");
+		if (!Save(memoDlg->GetVec(), writer)) {
+			return false;
+		}
+
+		writer.setpath("TODO.txt");
+		if (!Save(todoDlg->GetTodoList(), writer)) {
+			return false;
+		}
+
+		return diaryDlg->SaveAllToTxt();
+	}
+}
+
 
 // CfantasticBOOKApp
 
@@ -77,40 +104,17 @@ BOOL CfantasticBOOKApp::InitInstance()
 	CMainWnd dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
+	if (nResponse == IDOK || nResponse == IDCANCEL)
 	{
-		// TODO: 在此放置处理何时用
-		//  “确定”来关闭对话框的代码
-	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: 在此放置处理何时用
-		//  “取消”来关闭对话框的代码
-		// 
-		//保存数据操作
-		Writer& W = Writer::GetInstance();
-		auto memo = dlg.GetDlgMemo()->GetVec();
-		auto TODO = dlg.GetDlgTODO()->GetTodoList();
-		W.setpath("memo.txt");
-		Save(memo, W);
-		W.setpath("TODO.txt");
-		Save(TODO, W);
-		dlg.GetDlgDiary()->SaveToTxt();
-		
+		if (!SaveAllData(dlg))
+		{
+			AfxMessageBox(_T("数据保存失败，请检查文件是否可写。"));
+		}
 	}
 	else if (nResponse == -1)
 	{
 		TRACE(traceAppMsg, 0, "警告: 对话框创建失败，应用程序将意外终止。\n");
 		TRACE(traceAppMsg, 0, "警告: 如果您在对话框上使用 MFC 控件，则无法 #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS。\n");
-		//保存数据操作
-		Writer& W = Writer::GetInstance();
-		auto memo = dlg.GetDlgMemo()->GetVec();
-		auto TODO = dlg.GetDlgTODO()->GetTodoList();
-		W.setpath("memo.txt");
-		Save(memo, W);
-		W.setpath("TODO.txt");
-		Save(TODO, W);
-		dlg.GetDlgDiary()->SaveToTxt();
 	}
 
 	// 删除上面创建的 shell 管理器。

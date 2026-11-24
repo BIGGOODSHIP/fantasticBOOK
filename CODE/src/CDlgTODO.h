@@ -30,13 +30,15 @@ protected:
 public:
 	//对外接口
 	CCheckListCtrl* GetListCtrl() { return &m_listTodoCTL; }			// 获取待办事项列表控件的指针
-	std::list<TODOListItem> GetTodoList() { return m_todoList; } // 获取待办事项列表
+	const std::list<TODOListItem>& GetTodoList() const { return m_todoList; } // 获取待办事项列表
+	bool HasLoadError() const { return m_loadFailed; }
 
 	void add(TODOListItem& item); // 添加待办事项
 	void del(int item_index); // 删除待办事项
 private:
 	CCheckListCtrl m_listTodoCTL;			// 待办事项列表控件
 	std::list<TODOListItem> m_todoList; // 待办事项列表数据结构
+	bool m_loadFailed = false;
 
 	
 public:

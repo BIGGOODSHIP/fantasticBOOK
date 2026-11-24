@@ -34,7 +34,8 @@ BOOL CDlgMemo::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	Load(m_memoVec, "memo.txt");
+	const bool fileExists = FileExists("memo.txt");
+	m_loadFailed = fileExists && !Load(m_memoVec, "memo.txt");
 	for (const auto& memo : m_memoVec) {
 		m_memolist.AddString(Utf8ToCString(memo));
 	}
@@ -61,7 +62,7 @@ void CDlgMemo::OnBnClickedMemoAdd()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CTipMemoAdd addDlg;
-	int nret=addDlg.DoModal();
+	INT_PTR nret=addDlg.DoModal();
 	if (nret == IDCANCEL) {
 		return;
 	}
@@ -93,7 +94,7 @@ void CDlgMemo::OnBnClickedMemoClear()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CTipMemoClear clearDlg;
-	int nret = clearDlg.DoModal();
+	INT_PTR nret = clearDlg.DoModal();
 	if (nret == IDOK && clearDlg.ifcancel == FALSE) {
 		//清空的操作
 		m_memoVec.clear();

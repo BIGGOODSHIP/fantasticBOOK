@@ -65,6 +65,10 @@ void CTipAddDiary::OnBnClickedTipdiaryaddConfirm()
 	m_edit1.GetWindowText(diary_title);
 	m_edit2.GetWindowText(diary_date);
 
+	if (diary_title == "") {
+		return;
+	}
+
 	m_diary_title = diary_title;
 	m_diary_date = diary_date;
 	
